@@ -18,27 +18,27 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!mapsleft') {
-        message.reply("Need help with the Veto Bot? Visit http://csgoscrims.co.uk/discordBot.html");
+    if (message.content.toLowerCase() === '!mapsleft' && allowBan) {
+        message.reply("Maps left: "+maps + " ("+(mapsLeft - 1)+")");
     }
 });
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!veto help') {
-        message.reply("Maps left: "+maps + " ("+(mapsLeft - 1)+")");
+        message.reply("Need help with the Veto Bot? Visit http://csgoscrims.co.uk/discordBot.html");
     }
 });
 
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto bestofone') {
+    if (message.content.toLowerCase() === '!veto bestofone' && !allowBan) {
       bestOf = 1;
       message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto for a best of ' + bestOf + " match.");
     }
 });
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto bestofthree') {
+    if (message.content.toLowerCase() === '!veto bestofthree' && !allowBan) {
       bestOf = 3;
       message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto for a best of ' + bestOf + "match.");
     }
@@ -46,7 +46,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!activedutyveto') {
+    if (message.content.toLowerCase() === '!activedutyveto'  && !allowBan) {
         maps = 'cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = maps.split(",").length;
@@ -60,11 +60,16 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!popflashveto') {
+    if (message.content.toLowerCase() === '!popflashveto'  && !allowBan) {
         maps = 'subzero, dust2, canals, cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = maps.split(",").length;
         allowBan=true;
+              
+      if(bestOf==3)
+      {
+        mapsLeft = (mapsLeft - 3)
+      }
     }
 });
 
@@ -76,6 +81,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -88,6 +94,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -100,6 +107,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -113,6 +121,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -127,6 +136,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -140,6 +150,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -153,6 +164,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -166,6 +178,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -178,6 +191,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
         
     }
@@ -191,6 +205,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
     }
 });
@@ -202,6 +217,7 @@ client.on('message', message => {
         if(mapsLeft==2)
         {
             message.reply("Map left: " + maps);
+            allowBan=false;
         }
        
     }
