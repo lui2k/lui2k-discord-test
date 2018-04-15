@@ -11,6 +11,11 @@ var allowBan = false;
 var bestOfSelected = false;
 var bestOf;
 
+
+client.on("ready", () => {
+  client.user.setActivity(`Serving ${client.guilds.size} servers`);
+});
+
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto'  || message.content.toLowerCase() === '!veto') {
         message.reply('Enter !veto bestOfOne  OR  !veto bestOfThree');
@@ -49,7 +54,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!activedutyveto' && !allowBan) {
+    if (message.content.toLowerCase() === '!activedutyveto' && !allowBan && bestOfSelected) {
         maps = 'cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = maps.split(",").length;
@@ -65,7 +70,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!popflashveto'  && !allowBan) {
+    if (message.content.toLowerCase() === '!popflashveto'  && !allowBan && bestOfSelected) {
         maps = 'subzero, dust2, canals, cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = maps.split(",").length;
