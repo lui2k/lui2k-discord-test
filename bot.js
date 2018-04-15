@@ -11,18 +11,15 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content.toLowerCase === '!mapveto') {
+  if (msg.content === '!mapveto') {
     msg.reply('Select !ActiveDutyVeto  OR  !PopflashVeto');
     user = msg.author;
   }
 });
 
 client.on('message', msg => {
-  if (msg.content.toLowerCase === '!mapuser') {
-    if(user != '')
-    {
-      msg.reply('Current user: ' + user);
-    }
+  if (msg.content === '!mapuser') {
+    msg.reply('Current user: ' + user);
   }
 });
 
