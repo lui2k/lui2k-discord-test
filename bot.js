@@ -43,12 +43,6 @@ client.on('message', message => {
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = 7; // maps.split(",").length;
         allowBan=true;
-      
-      if(bestOf==3)
-      {
-        mapsLeft = (mapsLeft - 3)
-        bestOfSelected=true;
-      }
     }
 });
 
@@ -58,12 +52,6 @@ client.on('message', message => {
         message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = 10; // maps.split(",").length;
         allowBan=true;
-              
-      if(bestOf==3)
-      {
-        mapsLeft = (mapsLeft - 3)
-        bestOfSelected=true;
-      }
     }
 });
 
