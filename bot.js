@@ -21,12 +21,3 @@ client.on('message', message => {
 
 
 client.login(process.env.BOT_TOKEN);
-client.loginWithToken(process.env.BOT_TOKEN, output);
-
-function output(error, token) {
-        if (error) {
-                console.log(`There was an error logging in: ${error}`);
-                return;
-        } else
-                console.log(`Logged in. Token: ${token}`);
-}
