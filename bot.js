@@ -89,8 +89,8 @@ client.on('message', message => {
     if (message.content.toLowerCase() === '!veto cobble' && maps.indexOf('cobble')!= -1 && allowBan) {
         maps = maps.replace('cobble, ', '');
         message.reply('Cobblestone removed. Maps left: ' + maps);
-        mapsLeft = maps.split(",").length;
-        if(mapsLeft==2)
+        mapsLeft -= 1; // maps.split(",").length;
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -104,7 +104,7 @@ client.on('message', message => {
         maps = maps.replace('cache, ', '');
         mapsLeft -= 1; // maps.split(",").length;
         message.reply('Cache removed. Maps left: ' + maps);
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -118,7 +118,7 @@ client.on('message', message => {
         maps = maps.replace('mirage, ', '');
         mapsLeft -= 1; // maps.split(",").length;
         message.reply('Mirage removed. Maps left: ' + maps);
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -133,7 +133,7 @@ client.on('message', message => {
         maps = maps.replace('nuke, ', '');
         message.reply('Nuke removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -149,7 +149,7 @@ client.on('message', message => {
         maps = maps.replace('overpass, ', '');
         message.reply('Overpass removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -164,7 +164,7 @@ client.on('message', message => {
         maps = maps.replace('train', '');
         message.reply('Train removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -179,7 +179,7 @@ client.on('message', message => {
         maps = maps.replace('inferno, ', '');
         message.reply('Inferno removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -194,7 +194,7 @@ client.on('message', message => {
         maps = maps.replace('canals, ', '');
         message.reply('Canals removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -208,7 +208,7 @@ client.on('message', message => {
         maps = maps.replace('subzero, ', '');
         message.reply('Subzero removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
@@ -223,7 +223,7 @@ client.on('message', message => {
         maps = maps.replace('dust2, ', '');
         message.reply('Dust 2 removed. Maps left: ' + maps);
         mapsLeft -= 1; // maps.split(",").length;
-        if(mapsLeft==2)
+        if(mapsLeft==bestOf)
         {
             message.reply("Map left: " + maps);
             allowBan=false;
