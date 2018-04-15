@@ -48,7 +48,6 @@ client.on('message', message => {
       {
         mapsLeft = (mapsLeft - 3)
         bestOfSelected=true;
-          bestOfSelected=false;
       }
     }
 });
@@ -64,7 +63,6 @@ client.on('message', message => {
       {
         mapsLeft = (mapsLeft - 3)
         bestOfSelected=true;
-          bestOfSelected=false;
       }
     }
 });
