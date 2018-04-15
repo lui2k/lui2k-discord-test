@@ -19,6 +19,12 @@ client.on('message', message => {
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapsleft') {
+        message.reply("Need help with the Veto Bot? Visit http://csgoscrims.co.uk/discordBot.html");
+    }
+});
+
+client.on('message', message => {
+    if (message.content.toLowerCase() === '!veto help') {
         message.reply("Maps left: "+maps + " ("+(mapsLeft - 1)+")");
     }
 });
@@ -48,7 +54,7 @@ client.on('message', message => {
       
       if(bestOf==3)
       {
-        mapsLeft = (mapsLeft - 2)
+        mapsLeft = (mapsLeft - 3)
       }
     }
 });
