@@ -12,12 +12,6 @@ var bestOfSelected = false;
 var bestOf;
 
 
-
-client.on('ready', () => {
-  message.channel.send('CS:GO Veto bot updated. Visit http://csgoscrims.co.uk/discordBot.html to see the change log.');
-});
-
-
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto'  || message.content.toLowerCase() === '!veto') {
         message.reply('Enter !veto bestOfOne  OR  !veto bestOfThree');
