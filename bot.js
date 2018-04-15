@@ -12,10 +12,6 @@ var bestOfSelected = false;
 var bestOf;
 
 
-client.on("ready", () => {
-  client.user.setActivity(`Serving ${client.guilds.size} servers`);
-});
-
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto'  || message.content.toLowerCase() === '!veto') {
         message.reply('Enter !veto bestOfOne  OR  !veto bestOfThree');
