@@ -12,6 +12,10 @@ var bestOfSelected = false;
 var bestOf;
 
 
+client.on("ready",async () => {
+    client.user.setGame(" Map Vetoes!");
+});
+
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto'  || message.content.toLowerCase() === '!veto') {
         message.reply('Enter !veto bestOfOne  OR  !veto bestOfThree');
