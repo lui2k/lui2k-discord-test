@@ -1,23 +1,19 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const token = 'NDM0OTg1NjMwMTA0MDI3MTM3.DbSX1w.P343t6FMU81sJczI-m_67XoEFoc';
 
 var items = ['cache','cobble','inferno','mirage','nuke','overpass','train'];
 var PFitems = ['cache','cobble','inferno','mirage','nuke','overpass','train','subzero','dust2','canals'];
 
-
 client.on('ready', () => {
-    console.log('I am ready!');
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("ready", () => {
-    client.user.setActivity({game: {name: "CS:GO", type: 0}});
+client.on('message', msg => {
+  if (msg.content === 'ping') {
+    msg.reply('pong');
+  }
 });
 
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto') {
-        message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto');
-    }    
-});
-
-
-client.login(process.env.BOT_TOKEN);
+client.login(token);
+//client.login(process.env.BOT_TOKEN);
