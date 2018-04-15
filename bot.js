@@ -41,7 +41,7 @@ client.on('message', message => {
     if (message.content.toLowerCase() === '!activedutyveto' && !allowBan && bestOfSelected) {
         maps = 'cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
-        mapsLeft = maps.split(",").length;
+        mapsLeft = 7; // maps.split(",").length;
         allowBan=true;
       
       if(bestOf==3)
@@ -56,7 +56,7 @@ client.on('message', message => {
     if (message.content.toLowerCase() === '!popflashveto'  && !allowBan && bestOfSelected) {
         maps = 'subzero, dust2, canals, cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
-        mapsLeft = maps.split(",").length;
+        mapsLeft = 10; // maps.split(",").length;
         allowBan=true;
               
       if(bestOf==3)
