@@ -12,9 +12,6 @@ var bestOfSelected = false;
 var bestOf;
 
 
-client.on("ready",async () => {
-    client.user.setGame(" Map Vetoes!");
-});
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto'  || message.content.toLowerCase() === '!veto') {
@@ -84,7 +81,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -98,7 +95,7 @@ client.on('message', message => {
         message.reply('Cache removed. Maps left: ' + maps);
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -112,7 +109,7 @@ client.on('message', message => {
         message.reply('Mirage removed. Maps left: ' + maps);
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -127,7 +124,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -143,7 +140,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -158,7 +155,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -173,7 +170,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -188,7 +185,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -202,7 +199,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
@@ -217,7 +214,7 @@ client.on('message', message => {
         mapsLeft -= 1; // maps.split(",").length;
         if(mapsLeft==bestOf)
         {
-            message.reply("Map left: " + maps);
+            message.reply("you will play on " + maps + " (" + bestOf + ")" );
             allowBan=false;
             bestOfSelected=false;
         }
