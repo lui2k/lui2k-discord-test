@@ -3,7 +3,6 @@ const client = new Discord.Client();
 
 var items = ['cache','cobble','inferno','mirage','nuke','overpass','train'];
 var PFitems = ['cache','cobble','inferno','mirage','nuke','overpass','train','subzero','dust2','canals'];
-var user = "";
 
 
 client.on('ready', () => {
@@ -17,15 +16,17 @@ client.on("ready", () => {
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto') {
         message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto');
-        user = message.mentions.members.first();
-    }    
-});
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!!mapUser') {
-        message.reply(user + " is the active user");
     }    
 });
 
 
 client.login(process.env.BOT_TOKEN);
+client.loginWithToken(process.env.BOT_TOKEN, output);
+
+function output(error, token) {
+        if (error) {
+                console.log(`There was an error logging in: ${error}`);
+                return;
+        } else
+                console.log(`Logged in. Token: ${token}`);
+}
