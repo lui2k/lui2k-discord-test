@@ -238,7 +238,7 @@ client.on('message',message=> {
 
 
 client.on('message',message=> {
-    if(message.content.toLowerCase() === '!veto stats) {
+    if(message.content.toLowerCase() === '!veto stats') {
      message.reply( "Veto Bot Stats \n\n Servers: " + client.servers.length);
     }
 });
