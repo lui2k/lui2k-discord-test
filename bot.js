@@ -19,18 +19,6 @@ client.on('message', message => {
     }
 });
 
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!mapsleft' && allowBan) {
-        message.reply("Maps left: "+maps + " ("+(mapsLeft - 1)+")");
-    }
-});
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto help') {
-        message.reply("Need help with the Veto Bot? Visit http://csgoscrims.co.uk/discordBot.html");
-    }
-});
-
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!veto bestofone' && !allowBan && !bestOfSelected) {
@@ -81,6 +69,24 @@ client.on('message', message => {
     }
 });
 
+
+//MAPS LEFT CMD
+client.on('message', message => {
+    if (message.content.toLowerCase() === '!mapsleft' && allowBan) {
+        message.reply("Maps left: "+maps + " ("+(mapsLeft - 1)+")");
+    }
+});
+
+
+//BOT HELP CMD
+client.on('message', message => {
+    if (message.content.toLowerCase() === '!veto help') {
+        message.reply("Need help with the Veto Bot? Visit http://csgoscrims.co.uk/discordBot.html");
+    }
+});
+
+
+//MAPS
 client.on('message', message => {
     if (message.content.toLowerCase() === '!veto cobble' && maps.indexOf('cobble')!= -1 && allowBan) {
         maps = maps.replace('cobble, ', '');
