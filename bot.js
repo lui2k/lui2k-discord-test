@@ -8,6 +8,7 @@ var user;
 var maps;
 var mapsLeft;
 var allowBan = false;
+var bestOfSelected = false;
 var bestOf;
 
 client.on('message', message => {
@@ -31,15 +32,17 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto bestofone' && !allowBan) {
+    if (message.content.toLowerCase() === '!veto bestofone' && !allowBan && !bestOfSelected) {
       bestOf = 1;
+      bestOfSelected=true;
       message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto for a best of ' + bestOf + " match.");
     }
 });
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto bestofthree' && !allowBan) {
+    if (message.content.toLowerCase() === '!veto bestofthree' && !allowBan && !bestOfSelected) {
       bestOf = 3;
+      bestOfSelected=true;
       message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto for a best of ' + bestOf + "match.");
     }
 });
@@ -55,6 +58,8 @@ client.on('message', message => {
       if(bestOf==3)
       {
         mapsLeft = (mapsLeft - 3)
+        bestOfSelected=true;
+          bestOfSelected=false;
       }
     }
 });
@@ -69,6 +74,8 @@ client.on('message', message => {
       if(bestOf==3)
       {
         mapsLeft = (mapsLeft - 3)
+        bestOfSelected=true;
+          bestOfSelected=false;
       }
     }
 });
@@ -82,6 +89,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -95,6 +103,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -108,6 +117,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -122,6 +132,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -137,6 +148,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -151,6 +163,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -165,6 +178,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -179,6 +193,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
     }
 });
@@ -192,6 +207,7 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
         
     }
@@ -206,20 +222,8 @@ client.on('message', message => {
         {
             message.reply("Map left: " + maps);
             allowBan=false;
+            bestOfSelected=false;
         }
-    }
-});
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto dust 2' && maps.indexOf('dust2')!= -1 &&allowBan) {
-        maps = maps.replace('dust2, ', '');
-        message.reply('Dust 2 removed. Maps left: ' + maps);
-        mapsLeft = maps.split(",").length;
-        if(mapsLeft==2)
-        {
-            message.reply("Map left: " + maps);
-            allowBan=false;
-        }
-       
     }
 });
 
