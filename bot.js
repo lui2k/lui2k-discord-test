@@ -11,7 +11,7 @@ var allowBan = false;
 var bestOf;
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto') {
+    if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto'  || message.content.toLowerCase() === '!veto') {
         message.reply('Enter !veto bestOfOne  OR  !veto bestOfThree');
         mapsLeft = 50;
     }
@@ -38,7 +38,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto bestofthree' && !allowBan) {
+    if (message.content.toLowerCase() === '!veto bestofthree') {
       bestOf = 3;
       message.reply('Enter !ActiveDutyVeto  OR  !PopflashVeto for a best of ' + bestOf + "match.");
     }
@@ -46,7 +46,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!activedutyveto'  && !allowBan) {
+    if (message.content.toLowerCase() === '!activedutyveto') {
         maps = 'cobble, cache, inferno, mirage, nuke, overpass, train';
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
         mapsLeft = maps.split(",").length;
