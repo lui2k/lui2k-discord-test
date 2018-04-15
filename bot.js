@@ -4,16 +4,28 @@ const token = 'NDM0OTg1NjMwMTA0MDI3MTM3.DbSX1w.P343t6FMU81sJczI-m_67XoEFoc';
 
 var items = ['cache','cobble','inferno','mirage','nuke','overpass','train'];
 var PFitems = ['cache','cobble','inferno','mirage','nuke','overpass','train','subzero','dust2','canals'];
+var user = "";
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('pong');
+  if (msg.content.toLowerCase === '!mapveto') {
+    msg.reply('Select !ActiveDutyVeto  OR  !PopflashVeto');
+    user = msg.author;
   }
 });
+
+client.on('message', msg => {
+  if (msg.content.toLowerCase === '!mapuser') {
+    if(user != '')
+    {
+      msg.reply('Current user: ' + user);
+    }
+  }
+});
+
 
 client.login(token);
 //client.login(process.env.BOT_TOKEN);
