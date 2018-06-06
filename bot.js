@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
-var userData = JSON.parse(fs.readFileSync('./userInfo.json', 'utf8'));
+var userData = JSON.parse(fs.readFileSync('Storage/userInfo.json', 'utf8'));
 
 const token = 'NDM0OTg1NjMwMTA0MDI3MTM3.DbSX1w.P343t6FMU81sJczI-m_67XoEFoc';
 
@@ -17,7 +17,7 @@ client.on('message', message => {
         
         userData[message.author.id].messagesSent ++;
         
-        fs.writeFile("./userInfo.json", JSON.stringify(userData), (err) => {
+        fs.writeFile("Storage/userInfo.json", JSON.stringify(userData), (err) => {
             if(err) console.error(err);
         });
     }
