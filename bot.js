@@ -9,18 +9,18 @@ var items = ['cache','cobble','inferno','mirage','nuke','overpass','train'];
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!lui2k') {
-        var sender = message.author;
-        
+        var sender = message.author;        
         message.reply('Running test bot');
         
-        if(!userData[sender.id]) userData[sender.id] = {
-            messagesSent: 0
+        if(!userData[sender.id]) 
+        {
+            userData[sender.id] = {
+                messagesSent: 0
+            }
         }
-        
         userData[sender.id].messagesSent ++;
         
-        fs.writeFile("./userData.json", JSON.stringify(userData), (err) => {
-            if(err) console.log(err) });
+        fs.writeFile("./userData.json", JSON.stringify(userData));
         }
 });
 
