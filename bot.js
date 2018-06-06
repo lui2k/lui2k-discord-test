@@ -9,6 +9,8 @@ var items = ['cache','cobble','inferno','mirage','nuke','overpass','train'];
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!lui2k') {
+        var sender = message.author;
+        
         message.reply('Running test bot');
         
         if(!userData[sender.id]) userData[sender.id] = {
