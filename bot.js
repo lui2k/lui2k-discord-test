@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
-const dataFile = require("./info.txt");
+var userData = JSON.parse(fs.readFileSync('/userData.json', 'utf8'));
 
 const token = 'NDM0OTg1NjMwMTA0MDI3MTM3.DbSX1w.P343t6FMU81sJczI-m_67XoEFoc';
 
@@ -11,8 +11,15 @@ client.on('message', message => {
     if (message.content.toLowerCase() === '!lui2k') {
         message.reply('Running test bot');
         
+        if(!userData[sender.id]) userData[sender.id] + {
+         messagesSent: 0;   
+        }
         
-        fs.writeFile("./info.txt",'text', (err) => console.error);
+        userData[sender.id].messagesSent ++;
+        
+        fs.writeFile("./info.txt", JSON.stringify(userData), (err) => {
+            if(err) console.log(err);
+        }
     }
 });
 
