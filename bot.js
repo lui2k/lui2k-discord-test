@@ -20,9 +20,8 @@ client.on('message', message => {
         userData[sender.id].messagesSent ++;
         
         fs.writeFile("./userData.json", JSON.stringify(userData), (err) => {
-            if(err) console.log(err);
+            if(err) console.log(err) });
         }
-    }
 });
 
 
