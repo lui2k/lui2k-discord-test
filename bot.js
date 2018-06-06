@@ -11,8 +11,8 @@ client.on('message', message => {
     if (message.content.toLowerCase() === '!lui2k') {
         message.reply('Running test bot');
         
-        if(!userData[sender.id]) userData[sender.id] + {
-         messagesSent: 0;   
+        if(!userData[sender.id]) userData[sender.id] = {
+            messagesSent: 0
         }
         
         userData[sender.id].messagesSent ++;
