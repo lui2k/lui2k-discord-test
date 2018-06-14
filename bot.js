@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const token = 'NDM0OTg1NjMwMTA0MDI3MTM3.DbSX1w.P343t6FMU81sJczI-m_67XoEFoc';
-var correctLength = false;
+var correctLength = false, map = false, region=false;
 
 client.on('message', message => {
     if (message.content.toLowerCase().startsWith("!scrimadd"))
@@ -11,22 +11,19 @@ client.on('message', message => {
         info = info.split(" ");
         
         if(info.length==4)
-        {
-            correctLength = true;
-        }
+        { correctLength = true; }
         
         if(info[3].toString().match("(any|cache|cobblestone|dust2|mirage|inferno|overpass|nuke|train)"))
-        { console.log("Map " + true); }
+        { map=true; }
         else
-        { console.log("Map " + false); return; }
+        { return; }
         
         if(info[2].toString().match("(eu|na|sa|afr|oce|asia)"))
-        { console.log("Region " + true); }
+        { region=true; }
         else
-        { console.log("Region " + false); return; }
+        { return; }
         
         var str = "http://csgoscrims.co.uk/scrimDiscordAdd.php?teamName=" + info[1] + "&user=" + message.author + "&region=" + info[2] + "&map=" + info[3];
-        
         message.reply(str);
     }
 });
