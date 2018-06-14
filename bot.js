@@ -15,22 +15,20 @@ client.on('message', message => {
         
         if(info[3].toString().match("(any|cache|cobblestone|dust2|mirage|inferno|overpass|nuke|train)"))
         { map=true; }
-        else
-        { message.reply("Enter a valid map from: Any, Cache, Cobblestone, Dust2, Mirage, Inferno, Overpass, Nuke, Train"); return; }
         
         if(info[2].toString().match("(eu|na|sa|afr|oce|asia)"))
         { region=true; }
-        else
-        { message.reply("Enter a region from: EU, NA, SA, AFR, OCE, ASIA"); return; }
         
         if(correctLength && map && region)
         {
             var str = "http://csgoscrims.co.uk/scrimDiscordAdd.php?teamName=" + info[1] + "&user=" + message.author + "&region=" + info[2] + "&map=" + info[3];
             message.reply(str);
-        };
+            return;
+        }
         else
         {
-            message.reply("Error");
+            message.reply("Error. Try again with the following format:  !scrimAdd TeamName Map Region. \\n \\n E.g. !scrimAdd TeamA Dust2 EU");
+            return;
         }
     }
 });
