@@ -7,6 +7,8 @@ client.on('message', message => {
     if (message.content.toLowerCase().startsWith("!scrimadd"))
     {
         correctLength=false;
+        map=false;
+        region=false;
         var info = message.content.toLowerCase();
         info = info.split(" ");
         
@@ -31,6 +33,35 @@ client.on('message', message => {
             return;
         }
     }
+    
+    if(message.content.toLowerCase().startsWith("!scrimfind"))
+    {
+        correctLength=false;
+        map=false;
+        
+        var info = message.content.toLowerCase();
+        info = info.split(" ");
+        
+        if(info.length==2)
+        { correctLength=true;}
+        
+        if(info[1].toString().match("(any|cache|cobblestone|dust2|mirage|inferno|overpass|nuke|train)"))
+        { map=true; }
+               
+        if(correctLength && map)
+        {
+            var str = "http://csgoscrims.co.uk/scrimDiscordReturn.php?map=" + info[1];
+            message.reply(str);
+            return;
+        }
+        else
+        {
+            message.reply("Error. Try again with the following format:  !scrimFind Map \\n \\n E.g. !scrimFind Inferno");
+            return;
+        }
+    }
+    
+    
 });
 
 
