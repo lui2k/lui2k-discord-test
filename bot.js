@@ -26,7 +26,8 @@ client.on('message', message => {
             var str = "http://csgoscrims.co.uk/scrimDiscordAdd.php?teamName=" + info[1] + "&user=" + message.author + "&region=" + info[2] + "&map=" + info[3];
             var xml = new XMLHttpRequest();
             xml.open("GET", str, false);
-            message.reply(xml.responseText);
+            xml.send();
+            message.reply("Uploading:" + xml.responseText);
             return;
         }
         else
@@ -55,7 +56,8 @@ client.on('message', message => {
             var str = "http://csgoscrims.co.uk/scrimDiscordReturn.php?map=" + info[1];
             var xml = new XMLHttpRequest();
             xml.open("GET", str, false);
-            message.reply(xml.responseText);            
+            xml.send();
+            message.reply("Uploading:" + xml.responseText);
             return;
         }
         else
