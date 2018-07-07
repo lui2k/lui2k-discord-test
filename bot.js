@@ -248,7 +248,6 @@ client.on('message',message=> {
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
 var ealVeto = false, coinFlipped = false;
-var userA, userB;
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
@@ -256,31 +255,34 @@ client.on('message', message => {
 		mapsLeft = 50;
 		bestOfSelected=false;
 		allowBan =false;
-        coinFlipped=false;
-        ealVeto = true;
+        	coinFlipped=false;
+        	ealVeto = true;
 	}
     
     if (message.content.toLowerCase() === '!ealveto heads' || message.content.toLowerCase() === '!eal veto heads'  || message.content.toLowerCase() === '!eal heads') {
-        userA = message.author.toString()
-		message.channel.send(userA +" has selected heads.");
+	    userA = message.author.toString()
+	    message.channel.send(userA +" has selected heads.");
 	}
     else if (message.content.toLowerCase() === '!ealveto tails' || message.content.toLowerCase() === '!eal veto tails'  || message.content.toLowerCase() === '!eal tails') {
-        userB = message.author.toString()
-		message.channel.send(userB +" has selected tails.");
+	    userB = message.author.toString()
+	    message.channel.send(userB +" has selected tails.");
+	    var result = pickSide[Math.floor(Math.random()*pickSide.length)];
+	    coinFlipped=true;
+	}
+	if(coinFlipped)
+	{
+		    if(result=="heads")
+		    {
+			    message.channel.send(userA + " predicted the coinflip correctly. They will begin the veto");
+		    }
+		    else if(result=="tails")
+		    {
+			    message.channel.send(userb + " predicted the coinflip correctly. They will begin the veto");
+		    }
+		coinFlipped=false;
 	}
     
-    if(userA != "" && userB != "")
-    {
-        message.channel.send(FlipCoin);
-    }
-    
-    
 });
-
-function FlipCoin()
-{
-    return pickSide[Math.floor(Math.random()*pickSide.length)];
-}
 
     
 client.login(process.env.BOT_TOKEN);
