@@ -248,7 +248,7 @@ client.on('message',message=> {
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
 var ealVeto = false, coinFlipped = false, coinFlipDone =  false, ealAllowBan = false;
-var startingTeam, userA, userB;
+var startingTeam = "", userA = "", userB = "";
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
@@ -262,11 +262,11 @@ client.on('message', message => {
 	}
     
     if (message.content.toLowerCase() === '!ealveto heads' || message.content.toLowerCase() === '!eal veto heads'  || message.content.toLowerCase() === '!eal heads') {
-	    userA = message.author.toString()
+	    userA = message.author.toString();
 	    message.channel.send(userA +" has selected heads.");
 	}
     else if (message.content.toLowerCase() === '!ealveto tails' || message.content.toLowerCase() === '!eal veto tails'  || message.content.toLowerCase() === '!eal tails') {
-	    userB = message.author.toString()
+	    userB = message.author.toString();
 	    message.channel.send(userB +" has selected tails.");
 	    var result = pickSide[Math.floor(Math.random()*pickSide.length)];
 	    coinFlipped=true;
@@ -295,6 +295,12 @@ client.on('message', message => {
 			startingTeam = userB.toString();
 		}
 		message.channel.send(startingTeam + " will start the veto.");
+		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
+        	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
+        	mapsLeft = 7; 
+        	ealAllowBan=true;
+		bestOf = 3;
+	    	bestOfSelected=true;
 		
 	}
 	
