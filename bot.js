@@ -278,7 +278,7 @@ client.on('message', message => {
 		    }
 		    else if(result=="tails")
 		    {
-			    message.channel.send(userb + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam"");
+			    message.channel.send(userb + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam");
 		    }
 		coinFlipped=false;
 	}
