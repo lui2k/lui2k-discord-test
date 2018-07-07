@@ -252,7 +252,7 @@ var startingTeam;
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
-		message.reply('Running the EAL Map Veto. //n //n Each team leader predicts a coin flip: Type !ealveto heads  OR  !ealveto tails.');
+		message.reply('Running the EAL Map Veto. \\n \\n Each team leader predicts a coin flip: Type !ealveto heads  OR  !ealveto tails. **(START WITH !ealveto heads)**');
 		mapsLeft = 50;
 		bestOfSelected=false;
 		allowBan =false;
@@ -279,37 +279,64 @@ client.on('message', message => {
 		    }
 		    else if(result=="tails")
 		    {
-			    message.channel.send(userb + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam");
+			    message.channel.send(userB + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam");
 		    }
 		coinFlipDone=true;
 		coinFlipped=false;
 	}
 	
 	if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
-		if(result=="heads" && coinFlipDone)
+		if(result=="heads" && coinFlipDone && !allowBan)
 		{
-			startingTeam = userA;
+			startingTeam = userA.toString();
 		}
-		else if(result=="tails" && coinFlipDone)
+		else if(result=="tails" && coinFlipDone && !allowBan)
 		{
-			startingTeam = userB;
+			startingTeam = userB.toString();
 		}
 		message.channel.send(startingTeam + " will start the veto.");
 		
 	}
 	
 	if (message.content.toLowerCase() === '!eal otherteam') {
-		if(result=="heads" && coinFlipDone)
+		if(result=="heads" && coinFlipDone && !allowBan)
 		{
-			startingTeam = userB;
+			startingTeam = userB.toString();
 		}
-		else if(result=="tails" && coinFlipDone)
+		else if(result=="tails" && coinFlipDone && !allowBan)
 		{
-			startingTeam = userA;
+			startingTeam = userA.toString();
 		}
 		message.channel.send(startingTeam + " will start the veto.");
 	}
+	
+	if (message.content.toLowerCase() === '!eal otherteam') {
+		if(result=="heads" && coinFlipDone && !allowBan)
+		{
+			startingTeam = userB.toString();
+		}
+		else if(result=="tails" && coinFlipDone && !allowBan)
+		{
+			startingTeam = userA.toString();
+		}
+		message.channel.send(startingTeam + " will start the veto.");
+		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
+        	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
+        	mapsLeft = 7; 
+        	allowBan=true;
+		bestOf = 3;
+	    	bestOfSelected=true;
+	}
 });
 
+
+client.on('message', message => {
+    if (message.content.toLowerCase() === '!veto activeduty' && !allowBan && bestOfSelected) {
+        maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
+        message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + maps);
+        mapsLeft = 7; 
+        allowBan=true;
+    }
+});
     
 client.login(process.env.BOT_TOKEN);
