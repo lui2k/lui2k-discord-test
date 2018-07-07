@@ -339,7 +339,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content.toLowerCase() === '!veto cache' && maps.indexOf('cache')!= -1 &&ealAllowBan) {
         maps = maps.replace('cache, ', '');
-        message.reply('Cache removed.");
+        message.reply('Cache removed.');
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
