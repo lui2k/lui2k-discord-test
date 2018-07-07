@@ -281,36 +281,33 @@ client.on('message', message => {
 		    {
 			    message.channel.send(userb + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam");
 		    }
-		coinFlipped=false;
 		coinFlipDone=true;
+		coinFlipped=false;
 	}
 	
-	if(coinFlipDone)
-	{
-		if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
-			if(result=="heads")
-			{
-				startingTeam = userA;
-			}
-			else if(result=="tails")
-			{
-				startingTeam = userB;
-			}
-			message.channel.send(startingTeam + " will start the veto.");
-			
+	if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
+		if(result=="heads" && coinFlipDone)
+		{
+			startingTeam = userA;
 		}
+		else if(result=="tails" && coinFlipDone)
+		{
+			startingTeam = userB;
+		}
+		message.channel.send(startingTeam + " will start the veto.");
 		
-		if (message.content.toLowerCase() === '!eal otherteam') {
-			if(result=="heads")
-			{
-				startingTeam = userB;
-			}
-			else if(result=="tails")
-			{
-				startingTeam = userA;
-			}
-			message.channel.send(startingTeam + " will start the veto.");
+	}
+	
+	if (message.content.toLowerCase() === '!eal otherteam') {
+		if(result=="heads" && coinFlipDone)
+		{
+			startingTeam = userB;
 		}
+		else if(result=="tails" && coinFlipDone)
+		{
+			startingTeam = userA;
+		}
+		message.channel.send(startingTeam + " will start the veto.");
 	}
 });
 
