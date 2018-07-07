@@ -343,9 +343,9 @@ client.on('message', message => {
 		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
         	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
         	mapsLeft = 7; 
-        	ealAllowBan=true;		
-	}
-	
+        	ealAllowBan=true;
+		message.channel.send("maps left:"+maps);
+	}	
 	if (message.content.toLowerCase() === '!ealveto otherteam') {
 		if(result=="heads" && coinFlipDone && !ealAllowBan)
 		{
@@ -360,22 +360,7 @@ client.on('message', message => {
         	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
         	mapsLeft = 7; 
         	ealAllowBan=true;
-	}
-	
-	if (message.content.toLowerCase() === '!ealveto otherteam') {
-		if(result=="heads" && coinFlipDone && !ealAllowBan)
-		{
-			startingTeam = userB.toString();
-		}
-		else if(result=="tails" && coinFlipDone && !ealAllowBan)
-		{
-			startingTeam = userA.toString();
-		}
-		message.channel.send(startingTeam + " will start the veto.");
-		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
-        	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
-        	mapsLeft = 7; 
-        	ealAllowBan=true;
+		message.channel.send("maps left:"+maps);
 	}
 });
 
@@ -385,7 +370,7 @@ client.on('message', message => {
         maps = maps.replace('cache, ', '');
         message.reply('Cache removed.');
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -397,7 +382,7 @@ if (message.content.toLowerCase() === '!veto dust2' && maps.indexOf('dust2')!= -
         maps = maps.replace('dust2, ', '');
         message.reply("Dust 2 removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -410,7 +395,7 @@ if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')
         maps = maps.replace('inferno, ', '');
         message.reply("Inferno removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -426,7 +411,7 @@ if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!=
         maps = maps.replace('mirage, ', '');
         message.reply("Mirage removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -441,7 +426,7 @@ if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 
         maps = maps.replace('nuke, ', '');
         message.reply("Nuke removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -457,7 +442,7 @@ if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass
         maps = maps.replace('overpass, ', '');
         message.reply("Overpass removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -474,7 +459,7 @@ if (message.content.toLowerCase() === '!veto train' && maps.indexOf('train')!= -
         maps = maps.replace('train', '');
         message.reply("Train removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf  && bestOf != 1)
+        if(mapsLeft==bestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
