@@ -251,7 +251,7 @@ Suggested by ♠🅰🇳🇩🇪🇷🇸🖤🏴♠#9830
 Updated 07-July-2018 11:53.
 */
 var ealVeto = false, coinFlipped = false, coinFlipDone =  false, ealAllowBan = false, ealChooseSide = false, finishedRemoving = false;
-var startingTeam = "", userA = "", userB = "", outcome = "", coinChoose = 0;
+var startingTeam = "", userA = "", userB = "", outcome = "", coinChoose = 0, ealBestOf;
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!ealveto') {
@@ -265,17 +265,18 @@ client.on('message', message => {
 		ealChooseSide = false;
 		finishedRemoving = false;
 		coinChoose = 0;
+		ealBestOf = 0;
 	}
 	
 	if (message.content.toLowerCase() === '!ealveto bo1' || message.content.toLowerCase() === '!eal veto bestofone') {
-		bestOf = 1;
+		ealBestOf = 1;
 		bestOfSelected=true;
 		ealAllowBan =false;
 		message.channel.send('\n \n Each team leader predicts a coin flip: \n Type !ealveto heads  OR  !ealveto tails. **(START WITH !ealveto heads)**')
 	}
 	
 	if (message.content.toLowerCase() === '!ealveto bo3' || message.content.toLowerCase() === '!eal veto bestofthree') {
-		bestOf = 3;
+		ealBestOf = 3;
 		bestOfSelected=true;
 		ealAllowBan =false;
 		mapsLeft = 4;
@@ -283,7 +284,7 @@ client.on('message', message => {
 	}
 	
 	if (message.content.toLowerCase() === '!ealveto bo5' || message.content.toLowerCase() === '!eal veto bestoffive') {
-		bestOf = 5;
+		ealBestOf = 5;
 		bestOfSelected=true;
 		ealAllowBan =false;
 		message.channel.send('\n \n Each team leader predicts a coin flip: \n Type !ealveto heads  OR  !ealveto tails. **(START WITH !ealveto heads)**')
@@ -291,41 +292,41 @@ client.on('message', message => {
     
 	
 	var result = "";
-    if (message.content.toLowerCase() === '!ealveto heads') {
-	    userA = message.author.toString();
-	    coinChoose  += 1;
-	    
-	    if(coinChoose == 2)
-	    {
-		    result = pickSide[Math.floor(Math.random()*pickSide.length)];
-		    message.channel.send("Coinflip: " + result);
-		    coinFlipped=true;
-		    coinChoose = 0;
-	    }
+	if (message.content.toLowerCase() === '!ealveto heads') {
+		userA = message.author.toString();
+		coinChoose  += 1;
+		
+		if(coinChoose == 2)
+		{
+			result = pickSide[Math.floor(Math.random()*pickSide.length)];
+			message.channel.send("Coinflip: " + result);
+			coinFlipped=true;
+			coinChoose = 0;
+		}
 	}
 	
-    if (message.content.toLowerCase() === '!ealveto tails' && message.author.toString() != userA) {
-	    userB = message.author.toString();
-	    coinChoose += 1;
-	    
-	    if(coinChoose == 2)
-	    {
-		    result = pickSide[Math.floor(Math.random()*pickSide.length)];
-		    message.channel.send("Coinflip: " + result);
-		    coinFlipped=true;
-		    coinChoose = 0;
-	    }
+	if (message.content.toLowerCase() === '!ealveto tails' && message.author.toString() != userA) {
+		userB = message.author.toString();
+		coinChoose += 1;
+		
+		if(coinChoose == 2)
+		{
+			result = pickSide[Math.floor(Math.random()*pickSide.length)];
+			message.channel.send("Coinflip: " + result);
+			coinFlipped=true;
+			coinChoose = 0;
+		}
 	}
 	if(coinFlipped && !ealAllowBan)
 	{
-		    if(result=="heads")
-		    {
-			    message.channel.send(userA + " predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userB + "'s team? \n \n !eal myTeam // !eal otherTeam");
-		    }
-		    else if(result=="tails")
-		    {
-			    message.channel.send(userB + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \n \n !eal myTeam // !eal otherTeam");
-		    }
+		if(result=="heads")
+		{
+			message.channel.send(userA + " predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userB + "'s team? \n \n !ealveto myTeam // !ealveto otherTeam");
+		}
+		else if(result=="tails")
+		{
+			message.channel.send(userB + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \n \n !ealveto myTeam // !ealveto otherTeam");
+		}
 		coinFlipDone=true;
 		coinFlipped=false;
 	}
@@ -370,7 +371,7 @@ client.on('message', message => {
         maps = maps.replace('cache, ', '');
         message.reply('Cache removed.');
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -382,7 +383,7 @@ if (message.content.toLowerCase() === '!veto dust2' && maps.indexOf('dust2')!= -
         maps = maps.replace('dust2, ', '');
         message.reply("Dust 2 removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -395,7 +396,7 @@ if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')
         maps = maps.replace('inferno, ', '');
         message.reply("Inferno removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -411,7 +412,7 @@ if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!=
         maps = maps.replace('mirage, ', '');
         message.reply("Mirage removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -426,7 +427,7 @@ if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 
         maps = maps.replace('nuke, ', '');
         message.reply("Nuke removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -442,7 +443,7 @@ if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass
         maps = maps.replace('overpass, ', '');
         message.reply("Overpass removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
@@ -459,7 +460,7 @@ if (message.content.toLowerCase() === '!veto train' && maps.indexOf('train')!= -
         maps = maps.replace('train', '');
         message.reply("Train removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==ealBestOf)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
