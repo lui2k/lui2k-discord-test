@@ -343,7 +343,7 @@ client.on('message', message => {
 		message.channel.send(startingTeam + " will start the veto.");
 		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
         	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
-        	mapsLeft = 7; 
+        	mapsLeft = 8; 
         	ealAllowBan=true;
 		message.channel.send("maps left:"+maps);
 	}	
@@ -359,7 +359,7 @@ client.on('message', message => {
 		message.channel.send(startingTeam + " will start the veto.");
 		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
         	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
-        	mapsLeft = 7; 
+        	mapsLeft = 8; 
         	ealAllowBan=true;
 		message.channel.send("maps left:"+maps);
 	}
