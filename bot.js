@@ -532,6 +532,11 @@ if (message.content.toLowerCase() === '!pick mirage' && maps.indexOf('mirage')!=
 	bestOfSelected=false;
     }
 
+	if(mapsLeft < 1)
+	{
+		message.channel.send("Veto completed. You will play on the following maps: \n \n" + outcome);
+		mapsLeft = 50;
+	}
 
 });
     
