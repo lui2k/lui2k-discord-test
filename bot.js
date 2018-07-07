@@ -248,7 +248,7 @@ client.on('message',message=> {
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
 var ealVeto = false, coinFlipped = false, coinFlipDone =  false, ealAllowBan = false;
-var startingTeam;
+var startingTeam, userA, userB;
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
@@ -308,6 +308,12 @@ client.on('message', message => {
 			startingTeam = userA.toString();
 		}
 		message.channel.send(startingTeam + " will start the veto.");
+		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
+        	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
+        	mapsLeft = 7; 
+        	ealAllowBan=true;
+		bestOf = 3;
+	    	bestOfSelected=true;
 	}
 	
 	if (message.content.toLowerCase() === '!eal otherteam') {
@@ -333,7 +339,7 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.content.toLowerCase() === '!veto cache' && maps.indexOf('cache')!= -1 &&ealAllowBan) {
         maps = maps.replace('cache, ', '');
-        message.reply('Cache removed. Maps left: ' + maps);
+        message.reply('Cache removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -342,6 +348,81 @@ client.on('message', message => {
             bestOfSelected=false;
         }
     }
+	
+if (message.content.toLowerCase() === '!veto dust2' && maps.indexOf('dust2')!= -1 &&ealAllowBan) {
+        maps = maps.replace('dust2, ', '');
+        message.reply('Dust 2 removed.");
+        mapsLeft -= 1; 
+        if(mapsLeft==bestOf)
+        {
+            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
+            ealAllowBan=false;
+            bestOfSelected=false;
+        }
+    }
+	
+	
+if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')!= -1 &&ealAllowBan) {
+        maps = maps.replace('inferno, ', '');
+        message.reply('Inferno removed.");
+        mapsLeft -= 1; 
+        if(mapsLeft==bestOf)
+        {
+            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
+            ealAllowBan=false;
+            bestOfSelected=false;
+        }
+    }
+	
+if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!= -1 &&ealAllowBan) {
+        maps = maps.replace('mirage, ', '');
+        message.reply('Mirage removed.");
+        mapsLeft -= 1; 
+        if(mapsLeft==bestOf)
+        {
+            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
+            ealAllowBan=false;
+            bestOfSelected=false;
+        }
+    }
+if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 &&ealAllowBan) {
+        maps = maps.replace('nuke, ', '');
+        message.reply('Nuke removed.");
+        mapsLeft -= 1; 
+        if(mapsLeft==bestOf)
+        {
+            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
+            ealAllowBan=false;
+            bestOfSelected=false;
+        }
+    }
+
+if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass')!= -1 &&ealAllowBan) {
+        maps = maps.replace('overpass, ', '');
+        message.reply('Overpass removed.");
+        mapsLeft -= 1; 
+        if(mapsLeft==bestOf)
+        {
+            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
+            ealAllowBan=false;
+            bestOfSelected=false;
+        }
+    }
+
+	
+if (message.content.toLowerCase() === '!veto train' && maps.indexOf('train')!= -1 &&ealAllowBan) {
+        maps = maps.replace('train', '');
+        message.reply('Train removed.");
+        mapsLeft -= 1; 
+        if(mapsLeft==bestOf)
+        {
+            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
+            ealAllowBan=false;
+            bestOfSelected=false;
+        }
+    }
+
+	
 });
     
 client.login(process.env.BOT_TOKEN);
