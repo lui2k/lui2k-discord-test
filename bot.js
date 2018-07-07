@@ -248,6 +248,7 @@ client.on('message',message=> {
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
 var ealVeto = false, coinFlipped = false;
+var startingTeam;
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
@@ -273,13 +274,37 @@ client.on('message', message => {
 	{
 		    if(result=="heads")
 		    {
-			    message.channel.send(userA + " predicted the coinflip correctly. They will begin the veto");
+			    message.channel.send(userA + " predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userB + "'s team? !eal myTeam // !eal otherTeam");
 		    }
 		    else if(result=="tails")
 		    {
-			    message.channel.send(userb + " predicted the coinflip correctly. They will begin the veto");
+			    message.channel.send(userb + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam"");
 		    }
 		coinFlipped=false;
+	}
+	if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
+		if(result=="heads")
+		{
+			startingTeam = userA;
+			message.channel.send(userA + " will start the veto.");
+		}
+		else if(result=="tails")
+		{
+			startingTeam = userB;
+			message.channel.send(userB + " will start the veto.");
+		}
+	}
+	if (message.content.toLowerCase() === '!eal otherteam') {
+		if(result=="heads")
+		{
+			startingTeam = userB;
+			message.channel.send(userB + " will start the veto.");
+		}
+		else if(result=="tails")
+		{
+			startingTeam = userA;
+			message.channel.send(userA + " will start the veto.");
+		}
 	}
     
 });
