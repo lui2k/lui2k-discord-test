@@ -247,8 +247,8 @@ client.on('message',message=> {
 
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
-var ealVeto = false, coinFlipped = false, coinFlipDone =  false, ealAllowBan = false;
-var startingTeam = "", userA = "", userB = "";
+var ealVeto = false, coinFlipped = false, coinFlipDone =  false, ealAllowBan = false, ealChooseSide = false, finishedRemoving = false;
+var startingTeam = "", userA = "", userB = "", outcome = "";
 
 client.on('message', message => {
 	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
@@ -259,6 +259,8 @@ client.on('message', message => {
         	coinFlipped=false;
         	ealVeto = true;
 		coinFlipDone=false;
+		ealChooseSide = false;
+		finishedRemoving = false;
 	}
     
     if (message.content.toLowerCase() === '!ealveto heads' || message.content.toLowerCase() === '!eal veto heads'  || message.content.toLowerCase() === '!eal heads') {
@@ -349,9 +351,10 @@ client.on('message', message => {
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
+		finishedRemoving = true;		
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
         }
     }
 	
@@ -361,9 +364,10 @@ if (message.content.toLowerCase() === '!veto dust2' && maps.indexOf('dust2')!= -
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
+		finishedRemoving = true;		
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
         }
     }
 	
@@ -374,9 +378,10 @@ if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
+		finishedRemoving = true;		
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
         }
     }
 	
@@ -386,9 +391,10 @@ if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!=
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
+		finishedRemoving = true;		
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
         }
     }
 if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 &&ealAllowBan) {
@@ -397,9 +403,10 @@ if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
+		finishedRemoving = true;		
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
         }
     }
 
@@ -409,9 +416,10 @@ if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
+		finishedRemoving = true;
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
         }
     }
 
@@ -422,13 +430,75 @@ if (message.content.toLowerCase() === '!veto train' && maps.indexOf('train')!= -
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
-        }
+		finishedRemoving = true;		
+		message.reply("Now pick the maps to play, starting with !pick MAP" );
+		ealAllowBan=false;
+		bestOfSelected=false;
+	}
     }
 
+if (message.content.toLowerCase() === '!pick train' && maps.indexOf('train')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Train picked.");
+	maps = maps.replace('train', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Train, ";
+	bestOfSelected=false;
+    }
+
+if (message.content.toLowerCase() === '!pick nuke' && maps.indexOf('nuke')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Nuke picked.");
+	maps = maps.replace('nuke, ', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Nuke, ";
+	bestOfSelected=false;
+    }
 	
+if (message.content.toLowerCase() === '!pick overpass' && maps.indexOf('overpass')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Overpass picked.");
+	maps = maps.replace('overpass, ', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Overpass, ";
+	bestOfSelected=false;
+    }	
+	
+if (message.content.toLowerCase() === '!pick inferno' && maps.indexOf('inferno')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Inferno picked.");
+	maps = maps.replace('inferno, ', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Inferno, ";
+	bestOfSelected=false;
+    }
+	
+if (message.content.toLowerCase() === '!pick dust2' && maps.indexOf('dust2')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Dust2 picked.");
+	maps = maps.replace('dust2, ', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Dust 2, ";
+	bestOfSelected=false;
+    }
+if (message.content.toLowerCase() === '!pick cache' && maps.indexOf('cache')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Cache picked.");
+	maps = maps.replace('cache, ', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Cache, ";
+	bestOfSelected=false;
+    }
+if (message.content.toLowerCase() === '!pick mirage' && maps.indexOf('mirage')!= -1 && !ealAllowBan && finishedRemoving) {
+        message.reply("Mirage picked.");
+	maps = maps.replace('mirage, ', '');
+        mapsLeft -= 1; 
+        finishedRemoving = true;
+	outcome += "Mirage, ";
+	bestOfSelected=false;
+    }
+
+
 });
     
 client.login(process.env.BOT_TOKEN);
