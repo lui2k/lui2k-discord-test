@@ -351,7 +351,7 @@ client.on('message', message => {
 	
 if (message.content.toLowerCase() === '!veto dust2' && maps.indexOf('dust2')!= -1 &&ealAllowBan) {
         maps = maps.replace('dust2, ', '');
-        message.reply('Dust 2 removed.");
+        message.reply("Dust 2 removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -364,7 +364,7 @@ if (message.content.toLowerCase() === '!veto dust2' && maps.indexOf('dust2')!= -
 	
 if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')!= -1 &&ealAllowBan) {
         maps = maps.replace('inferno, ', '');
-        message.reply('Inferno removed.");
+        message.reply("Inferno removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -376,7 +376,7 @@ if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')
 	
 if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!= -1 &&ealAllowBan) {
         maps = maps.replace('mirage, ', '');
-        message.reply('Mirage removed.");
+        message.reply("Mirage removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -387,7 +387,7 @@ if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!=
     }
 if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 &&ealAllowBan) {
         maps = maps.replace('nuke, ', '');
-        message.reply('Nuke removed.");
+        message.reply("Nuke removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -399,7 +399,7 @@ if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 
 
 if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass')!= -1 &&ealAllowBan) {
         maps = maps.replace('overpass, ', '');
-        message.reply('Overpass removed.");
+        message.reply("Overpass removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -412,7 +412,7 @@ if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass
 	
 if (message.content.toLowerCase() === '!veto train' && maps.indexOf('train')!= -1 &&ealAllowBan) {
         maps = maps.replace('train', '');
-        message.reply('Train removed.");
+        message.reply("Train removed.");
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
