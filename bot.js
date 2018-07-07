@@ -247,7 +247,7 @@ client.on('message',message=> {
 
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
-var ealVeto = false, coinFlipped = false;
+var ealVeto = false, coinFlipped = false, coinFlipDone =  false;
 var startingTeam;
 
 client.on('message', message => {
@@ -258,6 +258,7 @@ client.on('message', message => {
 		allowBan =false;
         	coinFlipped=false;
         	ealVeto = true;
+		coinFlipDone=false;
 	}
     
     if (message.content.toLowerCase() === '!ealveto heads' || message.content.toLowerCase() === '!eal veto heads'  || message.content.toLowerCase() === '!eal heads') {
@@ -281,32 +282,36 @@ client.on('message', message => {
 			    message.channel.send(userb + "  predicted the coinflip correctly. Do you elect to begin the veto yourself, or pass it to " + userA + "'s team? \\n !eal myTeam // !eal otherTeam");
 		    }
 		coinFlipped=false;
+		coinFlipDone=true;
 	}
-	if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
-		if(result=="heads")
-		{
-			startingTeam = userA;
-			message.channel.send(userA + " will start the veto.");
+	
+	if(coinFlipDone)
+	{
+		if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
+			if(result=="heads")
+			{
+				startingTeam = userA;
+			}
+			else if(result=="tails")
+			{
+				startingTeam = userB;
+			}
+			message.channel.send(startingTeam + " will start the veto.");
+			
 		}
-		else if(result=="tails")
-		{
-			startingTeam = userB;
-			message.channel.send(userB + " will start the veto.");
+		
+		if (message.content.toLowerCase() === '!eal otherteam') {
+			if(result=="heads")
+			{
+				startingTeam = userB;
+			}
+			else if(result=="tails")
+			{
+				startingTeam = userA;
+			}
+			message.channel.send(startingTeam + " will start the veto.");
 		}
 	}
-	if (message.content.toLowerCase() === '!eal otherteam') {
-		if(result=="heads")
-		{
-			startingTeam = userB;
-			message.channel.send(userB + " will start the veto.");
-		}
-		else if(result=="tails")
-		{
-			startingTeam = userA;
-			message.channel.send(userA + " will start the veto.");
-		}
-	}
-    
 });
 
     
