@@ -248,11 +248,11 @@ client.on('message',message=> {
 
 ///EAL-SPECIFIC MAP VETO (Contact @Lui2k_ for specific)
 var ealVeto = false, coinFlipped = false, coinFlipDone =  false, ealAllowBan = false, ealChooseSide = false, finishedRemoving = false;
-var startingTeam = "", userA = "", userB = "", outcome = "";
+var startingTeam = "", userA = "", userB = "", outcome = "", coinChoose = 0;
 
 client.on('message', message => {
-	if (message.content.toLowerCase() === '!ealmapveto ' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!eal veto') {
-		message.reply('EAL Map Veto is **live**. \n \n Start by determining the number of maps to play (bo1, bo3, bo5) \n *e.g. !eal bo1');
+	if (message.content.toLowerCase() === '!ealmapveto' || message.content.toLowerCase() === '!eal map veto'  || message.content.toLowerCase() === '!ealveto') {
+		message.reply('EAL Map Veto is **live**. \n \n Start by determining the number of maps to play (bo1, bo3, bo5) \n *e.g. !ealveto bo1');
 		mapsLeft = 50;
 		bestOfSelected=false;
 		ealAllowBan =false;
@@ -261,6 +261,7 @@ client.on('message', message => {
 		coinFlipDone=false;
 		ealChooseSide = false;
 		finishedRemoving = false;
+		coinChoose = 0;
 	}
 	
 	if (message.content.toLowerCase() === '!ealveto bo1' || message.content.toLowerCase() === '!eal veto bestofone') {
@@ -284,16 +285,32 @@ client.on('message', message => {
 		message.channel.send('\n \n Each team leader predicts a coin flip: \n Type !ealveto heads  OR  !ealveto tails. **(START WITH !ealveto heads)**')
 	}
     
-    if (message.content.toLowerCase() === '!ealveto heads' || message.content.toLowerCase() === '!eal veto heads'  || message.content.toLowerCase() === '!eal heads') {
+	
+	var result = "";
+    if (message.content.toLowerCase() === '!ealveto heads') {
 	    userA = message.author.toString();
-	    message.channel.send(userA +" has selected heads.");
+	    coinChoose  += 1;
+	    
+	    if(coinChoose == 2)
+	    {
+		    result = pickSide[Math.floor(Math.random()*pickSide.length)];
+		    message.channel.send("Coinflip: " + result);
+		    coinFlipped=true;
+		    coinChoose = 0;
+	    }
 	}
-    else if (message.content.toLowerCase() === '!ealveto tails' || message.content.toLowerCase() === '!eal veto tails'  || message.content.toLowerCase() === '!eal tails') {
+	
+    if (message.content.toLowerCase() === '!ealveto tails' && message.author.toString() != userA) {
 	    userB = message.author.toString();
-	    message.channel.send(userB +" has selected tails.");
-	    var result = pickSide[Math.floor(Math.random()*pickSide.length)];
-	    message.channel.send("Coinflip between "+ userA + " & " + userB +": " + result);
-	    coinFlipped=true;
+	    coinChoose += 1;
+	    
+	    if(coinChoose == 2)
+	    {
+		    result = pickSide[Math.floor(Math.random()*pickSide.length)];
+		    message.channel.send("Coinflip: " + result);
+		    coinFlipped=true;
+		    coinChoose = 0;
+	    }
 	}
 	if(coinFlipped && !ealAllowBan)
 	{
@@ -309,7 +326,7 @@ client.on('message', message => {
 		coinFlipped=false;
 	}
 	
-	if (message.content.toLowerCase() === '!eal myteam' || message.content.toLowerCase() === '!eal me') {
+	if (message.content.toLowerCase() === '!ealveto myteam') {
 		if(result=="heads" && coinFlipDone && !ealAllowBan)
 		{
 			startingTeam = userA.toString();
@@ -325,7 +342,7 @@ client.on('message', message => {
         	ealAllowBan=true;		
 	}
 	
-	if (message.content.toLowerCase() === '!eal otherteam') {
+	if (message.content.toLowerCase() === '!ealveto otherteam') {
 		if(result=="heads" && coinFlipDone && !ealAllowBan)
 		{
 			startingTeam = userB.toString();
@@ -341,7 +358,7 @@ client.on('message', message => {
         	ealAllowBan=true;
 	}
 	
-	if (message.content.toLowerCase() === '!eal otherteam') {
+	if (message.content.toLowerCase() === '!ealveto otherteam') {
 		if(result=="heads" && coinFlipDone && !ealAllowBan)
 		{
 			startingTeam = userB.toString();
@@ -412,12 +429,16 @@ if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 
         maps = maps.replace('nuke, ', '');
         message.reply("Nuke removed.");
         mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
+        if(mapsLeft==bestOf && bestOf != 1)
         {
 		finishedRemoving = true;		
 		message.reply("Now pick the maps to play, starting with !pick MAP" );
 		ealAllowBan=false;
         }
+	else
+	{
+		message.channel.send("You will play on " + maps + ". Veto completed");
+	}
     }
 
 if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass')!= -1 &&ealAllowBan) {
