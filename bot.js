@@ -279,7 +279,6 @@ client.on('message', message => {
 		ealBestOf = 3;
 		bestOfSelected=true;
 		ealAllowBan =false;
-		mapsLeft = 4;
 		message.channel.send('\n \n Each team leader predicts a coin flip: \n Type !ealveto heads  OR  !ealveto tails. **(START WITH !ealveto heads)**')
 	}
 	
@@ -343,7 +342,7 @@ client.on('message', message => {
 		message.channel.send(startingTeam + " will start the veto.");
 		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
         	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
-        	mapsLeft = 8; 
+        	mapsLeft = 7; 
         	ealAllowBan=true;
 		message.channel.send("maps left:"+maps);
 	}	
@@ -359,7 +358,7 @@ client.on('message', message => {
 		message.channel.send(startingTeam + " will start the veto.");
 		maps = 'cache, dust2, inferno, mirage, nuke, overpass, train';
         	message.reply('Active Duty Map Veto starting for EAL S2 fixture: Type !veto MapName to ban any of the following maps: ' + maps);
-        	mapsLeft = 8; 
+        	mapsLeft = 7; 
         	ealAllowBan=true;
 		message.channel.send("maps left:"+maps);
 	}
