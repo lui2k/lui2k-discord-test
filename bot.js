@@ -327,42 +327,13 @@ client.on('message', message => {
 		bestOf = 3;
 	    	bestOfSelected=true;
 	}
-})
+});
 
 
 client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto cache' && maps.indexOf('cache')!= -1 && ealAllowBan) {
+    if (message.content.toLowerCase() === '!veto cache' && maps.indexOf('cache')!= -1 &&ealAllowBan) {
         maps = maps.replace('cache, ', '');
-        mapsLeft -= 1; 
-        message.reply('Cache removed.');
-        if(mapsLeft==bestOf)
-        {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
-        }
-    }
-});
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto mirage' && maps.indexOf('mirage')!= -1 && ealAllowBan) {
-        maps = maps.replace('mirage, ', '');
-        mapsLeft -= 1; 
-        message.reply('Mirage removed.');
-        if(mapsLeft==bestOf)
-        {
-		message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!")
-		ealAllowBan=false;
-		bestOfSelected=false;
-        }
-    }
-});
-
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto nuke' && maps.indexOf('nuke')!= -1 && ealAllowBan) {
-        maps = maps.replace('nuke, ', '');
-        message.reply('Nuke removed.';
+        message.reply('Cache removed. Maps left: ' + maps);
         mapsLeft -= 1; 
         if(mapsLeft==bestOf)
         {
@@ -372,69 +343,5 @@ client.on('message', message => {
         }
     }
 });
-
-
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto overpass' && maps.indexOf('overpass')!= -1 && ealAllowBan) {
-        maps = maps.replace('overpass, ', '');
-        message.reply('Overpass removed.');
-        mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
-        {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
-        }
-    }
-});
-
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto train' && maps.indexOf('train')!= -1 && ealAllowBan) {
-        maps = maps.replace('train', '');
-        message.reply('Train removed.');
-        mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
-        {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
-        }
-    }
-});
-
-
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto dust 2' && maps.indexOf('dust 2')!= -1 && ealAllowBan ) {
-        maps = maps.replace('dust 2, ', '');
-        message.reply('Dust 2 removed.');
-        mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
-        {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
-        }
-    }
-});
-
-client.on('message', message => {
-    if (message.content.toLowerCase() === '!veto inferno' && maps.indexOf('inferno')!= -1 && ealAllowBan ) {
-        maps = maps.replace('inferno, ', '');
-        message.reply('Inferno removed.');
-        mapsLeft -= 1; 
-        if(mapsLeft==bestOf)
-        {
-            message.reply("you will play on " + maps + " (BO" + bestOf + "). Good luck, have fun!" );
-            ealAllowBan=false;
-            bestOfSelected=false;
-        }
-    }
-});
-
-
-
     
 client.login(process.env.BOT_TOKEN);
