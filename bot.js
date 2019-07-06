@@ -1,7 +1,10 @@
+//Lui2k's tournament edition of a CSGO veto bot. Updated with Summer 2019 map pool with Vertigo.
+
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var mapPool = ['vertigo', 'dust2', 'inferno', 'mirage', 'nuke', 'overpass', 'train'];
+var mapPool = ['dust2', 'inferno', 'mirage', 'nuke', 'overpass', 'train', 'vertigo'];
 var pickSide = ['heads', 'tails'];
 var allowBan = false, bestOfSelected = false;
 var bestOf;
@@ -34,7 +37,7 @@ client.on('message', message => {
         message.reply("Maps left: " + mapPool + " (" + (mapPool.length - 1) + ")");
     }
     else if (message.content.toLowerCase() === '!veto help') {
-        message.reply("Need help with the Veto Bot? Visit https://github.com/lui2k/csgo-discord-veto or contact the developer: Lui2k#3225 ");
+        message.reply("Need help with the Veto Bot? Contact the developer: `Lui2k#3225` or https://twitter.com/lui2k_");
     }
     else if (message.content.toLowerCase() === '!randommap' || message.content.toLowerCase() === '!random map') {
         message.reply(activeMaps[Math.floor(Math.random() * activeMaps.length)]);
@@ -44,7 +47,7 @@ client.on('message', message => {
         if (mapPool.indexOf(map) !== -1) {
             mapPool = mapPool.filter(function (m) { return m !== map; });
             if (mapPool.length == 1 && bestOf==1) {
-                message.reply("you will play on " + mapPool + " (BO" + bestOf + "). Good luck, have fun!");
+                message.reply("You will play a best-of-1 on "+mapPool +". Good luck, have fun!");
                 allowBan = false;
                 bestOfSelected = false;
             }
@@ -57,7 +60,8 @@ client.on('message', message => {
             }
             else if(count == 6 && bestOf==3)
             {
-                message.reply("You will play a best-of-3 on "+pickedMaps.toString())
+                pickedMaps.push(mapPool[0]);
+                message.reply("You will play a best-of-3 on "+pickedMaps.toString()+". Good luck, have fun!");
                 allowBan = false;
                 bestOfSelected = false;
             }
