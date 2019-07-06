@@ -16,7 +16,6 @@ client.on('message', message => {
         message.reply('Enter !veto bo1  OR  !veto bo3  OR  !veto popflash pug');
         bestOfSelected = false;
         allowBan = false;
-        count = 0;
     }
     else if (message.content.toLowerCase() === '!veto popflash pug' && !allowBan && !bestOfSelected) {
         bestOf = 1;
@@ -43,13 +42,13 @@ client.on('message', message => {
     else if (message.content.toLowerCase() === '!veto activeduty' && !allowBan && bestOfSelected) {
         mapPool = activeMaps.slice(0);
         allowBan = true;
-        count = 0;
+        count = 1;
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
     }
     else if (message.content.toLowerCase() === '!veto popflash' && !allowBan && bestOfSelected) {
         mapPool = allMaps.slice(0);
         allowBan = true;
-        count = 0;
+        count = 1;
         message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);        
     }
     else if (message.content.toLowerCase().indexOf('!veto maplist') === 0 && !allowBan && bestOfSelected) {
