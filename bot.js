@@ -75,9 +75,9 @@ client.on('message', message => {
                 bestOfSelected = false;
             }
         }
-        else {
-            message.reply("Unrecognized command or map is missing from map pool '" + map + "', available maps for veto are: " + mapPool);
-        }
+    }
+    else {
+        message.reply("Unrecognized command or map is missing from map pool '" + map + "', available maps for veto are: " + mapPool);
     }
 });
 
