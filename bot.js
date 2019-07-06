@@ -73,17 +73,24 @@ client.on('message', message => {
         var map = message.content.toLowerCase().slice(5).trim();
         if (mapPool.indexOf(map) !== -1) {
             mapPool = mapPool.filter(function (m) { return m !== map; });
-            message.reply(map[0].toUpperCase() + map.slice(1) + ' removed. Maps left: ' + mapPool);
             if (mapPool.length == 1 && bestOf==1) {
                 message.reply("you will play on " + mapPool + " (BO" + bestOf + "). Good luck, have fun!");
                 allowBan = false;
                 bestOfSelected = false;
                 count++;
             }
-            if(count == 3||count==4||count==7)
+            else if( (count == 3||count==4||count==7) && bestOf==3)
             {
-                pickedMaps.push(map);
-                message.reply("Picked:"+map);
+                pickedMaps.push(map[0]);
+                message.reply("Picked:"+map[0]);
+            }
+            else if(count == 7 && bestOf==3)
+            {
+                message.reply("You will play a best-of-3 on "+pickedMaps.toString())
+            }
+            else
+            {
+                message.reply(map[0].toUpperCase() + map.slice(1) + ' removed. Maps left: ' + mapPool);
             }
         }
         else {
