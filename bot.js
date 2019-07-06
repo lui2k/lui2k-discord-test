@@ -1,11 +1,9 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var activeMaps = ['vertigo', 'dust2', 'inferno', 'mirage', 'nuke', 'overpass', 'train'];
+var mapPool = ['vertigo', 'dust2', 'inferno', 'mirage', 'nuke', 'overpass', 'train'];
 var pickSide = ['heads', 'tails'];
-var mapPool = [];
-var allowBan = false;
-var bestOfSelected = false;
+var allowBan = false, bestOfSelected = false;
 var bestOf;
 var count = 1;
 var pickedMaps = [];
@@ -15,6 +13,7 @@ client.on('message', message => {
         message.reply('Enter !veto bo1  OR  !veto bo3');
         bestOfSelected = false;
         allowBan = false;
+        count = 1;
     }
     else if (message.content.toLowerCase() === '!veto flipcoin' || message.content.toLowerCase() === '!veto flipacoin') {
         message.reply('the coin has landed on ' + pickSide[Math.floor(Math.random() * pickSide.length)] + '.');
@@ -22,25 +21,14 @@ client.on('message', message => {
     else if (message.content.toLowerCase() === '!veto bo1' && !allowBan && !bestOfSelected) {
         bestOf = 1;
         bestOfSelected = true;
-        allowBan = false;
+        allowBan = true;
         message.reply('Enter !Veto ActiveDuty  OR  !Veto Popflash for a best of ' + bestOf + "match.");
     }
     else if (message.content.toLowerCase() === '!veto bo3' && !allowBan && !bestOfSelected) {
         bestOf = 3;
         bestOfSelected = true;
-        allowBan = false;
-        message.reply('Enter !Veto ActiveDuty  OR  !Veto Popflash for a best of ' + bestOf + "match.");
-    }
-    else if (message.content.toLowerCase() === '!veto activeduty' && !allowBan && bestOfSelected) {
-        mapPool = activeMaps.slice(0);
         allowBan = true;
-        count = 1;
         message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
-    }
-    else if (message.content.toLowerCase().indexOf('!veto maplist') === 0 && !allowBan && bestOfSelected) {
-        mapPool = message.content.slice(13).split(',').map(function (m) { return m.toLowerCase().trim(); });
-        message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
-        allowBan = true;
     }
     else if (message.content.toLowerCase() === '!mapsleft' && allowBan) {
         message.reply("Maps left: " + mapPool + " (" + (mapPool.length - 1) + ")");
