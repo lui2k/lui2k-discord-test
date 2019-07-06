@@ -8,7 +8,7 @@ var mapPool = [];
 var allowBan = false;
 var bestOfSelected = false;
 var bestOf;
-var count = 0;
+var count = 1;
 var pickedMaps = [];
 
 client.on('message', message => {
@@ -80,8 +80,9 @@ client.on('message', message => {
             }
             else if( (count == 3||count==4||count==7) && bestOf==3)
             {
-                pickedMaps.push(map[0]);
-                message.reply("Picked:"+map[0]);
+                pickedMaps.push(map);
+                message.reply("Picked: "+map + ". Maps left: "+mapPool);
+                map.slice(1)
                 count+=1;
             }
             else if(count == 7 && bestOf==3)
@@ -92,6 +93,7 @@ client.on('message', message => {
             {
                 message.reply(map[0].toUpperCase() + map.slice(1) + ' removed. Maps left: ' + mapPool);
                 count+=1;
+                map.slice(1)
             }
         }
         else {
