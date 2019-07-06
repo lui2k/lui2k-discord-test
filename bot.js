@@ -8,19 +8,22 @@ var mapPool = [];
 var allowBan = false;
 var bestOfSelected = false;
 var bestOf;
+var count = 0;
+var pickedMaps = [];
 
 client.on('message', message => {
     if (message.content.toLowerCase() === '!mapveto' || message.content.toLowerCase() === '!map veto' || message.content.toLowerCase() === '!veto') {
         message.reply('Enter !veto bo1  OR  !veto bo3  OR  !veto popflash pug');
         bestOfSelected = false;
         allowBan = false;
+        count = 0;
     }
     else if (message.content.toLowerCase() === '!veto popflash pug' && !allowBan && !bestOfSelected) {
         bestOf = 1;
         bestOfSelected = true;
         mapPool = allMaps.slice(0);
-        message.reply('PUG Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
         allowBan = true;
+        message.reply('PUG Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
     }
     else if (message.content.toLowerCase() === '!veto flipcoin' || message.content.toLowerCase() === '!veto flipacoin') {
         message.reply('the coin has landed on ' + pickSide[Math.floor(Math.random() * pickSide.length)] + '.');
@@ -39,13 +42,15 @@ client.on('message', message => {
     }
     else if (message.content.toLowerCase() === '!veto activeduty' && !allowBan && bestOfSelected) {
         mapPool = activeMaps.slice(0);
-        message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
         allowBan = true;
+        count = 0;
+        message.reply('Active Duty Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
     }
     else if (message.content.toLowerCase() === '!veto popflash' && !allowBan && bestOfSelected) {
         mapPool = allMaps.slice(0);
-        message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);
         allowBan = true;
+        count = 0;
+        message.reply('Popflash Map Veto starting: Type !veto MapName to ban any of the following maps: ' + mapPool);        
     }
     else if (message.content.toLowerCase().indexOf('!veto maplist') === 0 && !allowBan && bestOfSelected) {
         mapPool = message.content.slice(13).split(',').map(function (m) { return m.toLowerCase().trim(); });
@@ -69,10 +74,16 @@ client.on('message', message => {
         if (mapPool.indexOf(map) !== -1) {
             mapPool = mapPool.filter(function (m) { return m !== map; });
             message.reply(map[0].toUpperCase() + map.slice(1) + ' removed. Maps left: ' + mapPool);
-            if (mapPool.length == bestOf) {
+            if (mapPool.length == 1 && bestOf==1) {
                 message.reply("you will play on " + mapPool + " (BO" + bestOf + "). Good luck, have fun!");
                 allowBan = false;
                 bestOfSelected = false;
+                count++;
+            }
+            if(count == 3||count==4||count==7)
+            {
+                pickedMaps.push(map);
+                message.reply("Picked:"+map);
             }
         }
         else {
