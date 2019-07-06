@@ -77,12 +77,12 @@ client.on('message', message => {
                 message.reply("you will play on " + mapPool + " (BO" + bestOf + "). Good luck, have fun!");
                 allowBan = false;
                 bestOfSelected = false;
-                count++;
             }
             else if( (count == 3||count==4||count==7) && bestOf==3)
             {
                 pickedMaps.push(map[0]);
                 message.reply("Picked:"+map[0]);
+                count+=1;
             }
             else if(count == 7 && bestOf==3)
             {
@@ -91,6 +91,7 @@ client.on('message', message => {
             else
             {
                 message.reply(map[0].toUpperCase() + map.slice(1) + ' removed. Maps left: ' + mapPool);
+                count+=1;
             }
         }
         else {
